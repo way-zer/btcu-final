@@ -9,10 +9,10 @@
 - [ ] 编写前端
 - [ ] 整体测试
 ### 使用方法(链码部分)
-环境版本1.4.3 
-需手动安装相关docker镜像 
-./bin下需要3个可执行文件 configtxgen configtxlator cryptogen 
-启动方式与byfn相似 
+环境版本1.4.3  
+需手动安装相关docker镜像  
+./bin下需要3个可执行文件 configtxgen configtxlator cryptogen  
+启动方式与byfn相似  
 ```shell
 sh manage.sh generate #(可选)
 sh manage.sh up 

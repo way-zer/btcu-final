@@ -30,3 +30,12 @@ sh manage.sh down
 - register 版权登记 参数 Hash Name Author Press Data || 防覆写 写入Hash->Data (Name,Author,Press)->Hash两条记录
 - query 查询 参数 Hash 返回 Data || 查询Hash->Data
 - queryHash 查询 参数 Name Author Press 返回 Hash || 查询(Name,Author,Press)->Hash
+### 启动方法(完整)
+```shell
+ #工作目录为项目根目录,即当前README所在目录
+ #./bin下需要3个可执行文件 configtxgen configtxlator cryptogen (设计fabric版本1.4.3)
+ sh manage.sh up #启动网络
+ go mod verify #安装golang项目依赖
+ #配置 ./server/conf/app.conf 中数据库信息(默认为root:123456@127.0.0.1:3306/copyright)
+ go run server #启动服务端(前端为8080端口)
+```

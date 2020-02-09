@@ -22,11 +22,11 @@ const (
 )
 
 type Copyright struct {
-	Name      string `json:"name"`
-	Author    string `json:"authorName"`
-	Press     string `json:"press"`
-	Hash      string `json:"fileHash"`
-	PublicKey string `json:"public_key"`
+	Name      string    `json:"name"`
+	Author    string    `json:"authorName"`
+	Press     string    `json:"press"`
+	Hash      string    `json:"fileHash"`
+	PublicKey PublicKey `json:"public_key"`
 }
 
 type CopyRightData struct {

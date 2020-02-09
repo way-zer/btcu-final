@@ -1,4 +1,4 @@
-package client
+package clientSDK
 
 import (
 	"crypto/rand"

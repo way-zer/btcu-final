@@ -1,4 +1,4 @@
-package client
+package clientSDK
 
 import (
 	"bytes"
@@ -14,11 +14,11 @@ import (
 )
 
 const (
-	configFile  = "./sdkConfig.yaml"
+	configFile  = "./clientSDK/sdkConfig.yaml"
 	channelID   = "tlchannel"
 	chainCodeID = "mycc"
-	orgName = "Org1"
-	orgUser = "User1"
+	orgName     = "Org1"
+	orgUser     = "User1"
 
 	keyBit = 4096
 )
@@ -58,7 +58,7 @@ func (d *CopyRightData) CalSig(pri *rsa.PrivateKey) error {
 	return nil
 }
 
-func Register(copyright *Copyright, pri PrivateKey) (*CopyRightData,error) {
+func Register(copyright *Copyright, pri PrivateKey) (*CopyRightData, error) {
 	data := CopyRightData{
 		Copyright: copyright,
 		Signature: "",
@@ -66,15 +66,15 @@ func Register(copyright *Copyright, pri PrivateKey) (*CopyRightData,error) {
 	}
 	priKey, err := DecodePrivateKey(pri)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	err = data.CalSig(priKey)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	jsonD, err := json.Marshal(data)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	//Send to ChainCode
 	req, err := client.Execute(channel.Request{
@@ -83,7 +83,7 @@ func Register(copyright *Copyright, pri PrivateKey) (*CopyRightData,error) {
 		Args:        [][]byte{[]byte(data.Hash), []byte(data.Name), []byte(data.Author), []byte(data.Press), jsonD},
 	})
 	println(req.Payload)
-	return &data,err
+	return &data, err
 }
 
 func GetRightByHash(hash string) (*CopyRightData, error) {
@@ -124,7 +124,7 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	context := sdk.ChannelContext(channelID,fabsdk.WithOrg(orgName),fabsdk.WithUser(orgUser))
+	context := sdk.ChannelContext(channelID, fabsdk.WithOrg(orgName), fabsdk.WithUser(orgUser))
 	client, err = channel.New(context)
 	if err != nil {
 		log.Fatal(err)

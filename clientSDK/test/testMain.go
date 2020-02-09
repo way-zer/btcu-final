@@ -1,7 +1,7 @@
 package main
 
 import (
-	"btcu-final/client"
+	"btcu-final/clientSDK"
 	"log"
 )
 
@@ -13,13 +13,13 @@ func main() {
 	}
 
 	println("GenerateKeys")
-	pri, pub, err := client.GenerateKeys()
+	pri, pub, err := clientSDK.GenerateKeys()
 	check(err)
-	println(*pri,*pub)
+	println(*pri, *pub)
 
 	println("Register")
 	const TEST_HASH = "12345678912345678912345679"
-	data,err := client.Register(&client.Copyright{
+	data, err := clientSDK.Register(&clientSDK.Copyright{
 		Name:      "TEST",
 		Author:    "TEST_USER",
 		Press:     "TEST_PRESS",
@@ -30,12 +30,12 @@ func main() {
 	println(data)
 
 	println("GetRightByHash")
-	data, err = client.GetRightByHash(TEST_HASH)
+	data, err = clientSDK.GetRightByHash(TEST_HASH)
 	check(err)
 	println(data)
 
 	println("GetRightByInfo")
-	data, err = client.GetRightByInfo("TEST", "TEST_USER", "TEST_PRESS")
+	data, err = clientSDK.GetRightByInfo("TEST", "TEST_USER", "TEST_PRESS")
 	check(err)
 	println(data)
 

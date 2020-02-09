@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/lib/login.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/blogsheet.css">
+    <script src="../static/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/lib/jquery.url.js"></script>
+    <script src="../static/js/blog.js"></script>
+</head>
+<body>
+
+{{template "block/nav.html"}}
+
+<div class="htmleaf-container">
+    <div class="wrapper">
+    {{/*注册表单*/}}
+        <div class="container">
+            <h2>版权链--基于Fabric的版权登记系统</h2>
+            <form id="register-form" class="form" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password" id="register-password">
+                <input type="password" name="repassword" placeholder="rePassword">
+                <br>
+                <button type="submit" id="login-button">Register</button>
+            </form>
+        </div>
+
+    {{/*背景动画*/}}
+        <ul class="bg-bubbles">
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

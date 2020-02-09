@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>版权登记</title>
+    <link href="../static/css/blogsheet.css" rel="stylesheet">
+    <script src="../static/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/lib/jquery.url.js"></script>
+    <script src="../static/js/blog.js"></script>
+</head>
+<body>
+
+{{template "block/nav.html" .}}
+
+<div id="main">
+
+    <div>文件上传</div>
+    <form id="upload-document-form" method="post">
+        <input type="file" id="document-upload-file" name="upload" style="width: 20%;height: 40px;">
+        <input type="button" id="document-upload-button" value="提交文件" style="width: 20%;height: 40px;">
+        <input id="add-copyright-id" hidden name="id" value="{{.Id}}">
+    </form>
+
+    <form id="add-copyright-form" method="post">
+        <div>文件hash：</div>
+        <input id="document-hash" type="text" placeholder="选择文件后自动填充" name="hash" value="">
+        <div>作品名</div>
+        <input type="text" placeholder="请输入作品名称" name="name" value="{{.Name}}">
+        <div>作者</div>
+        <input type="text" placeholder="请输入作者名称" name="author" value="{{.Author}}">
+        <div>出版社</div>
+        <input type="text" placeholder="请输入出版社名称" name="press" value="{{.Press}}">
+        <div>用户私钥</div>
+        <input type="text" placeholder="请输入用户私钥" name="privateKey" value="">
+        <input id="add-copyright-id" hidden name="id" value="{{.Id}}">
+
+        <div>
+        <button type="button" onclick="history.back()" style="width: 20%;height: 40px;">返回</button>
+        <button type="submit" id="write-art-submit" style="width: 20%;height: 40px;">提交</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

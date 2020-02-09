@@ -1,4 +1,5 @@
 /bin/*
 /channel-artifacts/*
 /crypto-config/
+*.iml
 !.gitkeep

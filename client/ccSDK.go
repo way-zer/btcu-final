@@ -16,7 +16,9 @@ import (
 const (
 	configFile  = "./sdkConfig.yaml"
 	channelID   = "tlchannel"
-	chaincodeID = "mycc"
+	chainCodeID = "mycc"
+	orgName = "Org1"
+	orgUser = "User1"
 
 	keyBit = 4096
 )
@@ -75,7 +77,7 @@ func Register(copyright *Copyright, pri PrivateKey) error {
 	}
 	//Send to ChainCode
 	req, err := client.Execute(channel.Request{
-		ChaincodeID: chaincodeID,
+		ChaincodeID: chainCodeID,
 		Fcn:         "register",
 		Args:        [][]byte{[]byte(data.Hash), []byte(data.Name), []byte(data.Author), []byte(data.Press), jsonD},
 	})
@@ -124,9 +126,10 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	context := sdk.ChannelContext(channelID)
+	context := sdk.ChannelContext(channelID,fabsdk.WithOrg(orgName),fabsdk.WithUser(orgUser))
 	client, err = channel.New(context)
 	if err != nil {
 		log.Fatal(err)
 	}
+	println("init ccSDK OK!")
 }

@@ -82,13 +82,15 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	## Install chaincode on peer0.org1 and peer0.org2
 	echo "Install chaincode on peer0.org1..."
 	installChaincode 0 1
+	installChaincode 1 1
 	echo "Install chaincode on peer0.org2..."
 	installChaincode 0 2
 
 	# Instantiate chaincode on peer0.org2
 	# DATA: ["2fafd2b3973957950192593d6e72e6fad8c0a9f1","{\"user\":\"TestUser\",\"time\":\"1234567890\",\"md5\":\"8b70272ef79d09d5\"}"]
-	echo "Instantiating chaincode on peer0.org1..."
+	echo "Instantiating chaincode on org1..."
 	instantiateChaincode 0 1 '{"Args":["init","2fafd2b3973957950192593d6e72e6fad8c0a9f1","{\"user\":\"TestUser\",\"time\":\"1234567890\",\"md5\":\"8b70272ef79d09d5\"}"]}'
+	instantiateChaincode 1 1 '{"Args":["init","2fafd2b3973957950192593d6e72e6fad8c0a9f1","{\"user\":\"TestUser\",\"time\":\"1234567890\",\"md5\":\"8b70272ef79d09d5\"}"]}'
 
 	sleep $DELAY
 #Use golang for test

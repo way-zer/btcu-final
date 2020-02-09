@@ -49,7 +49,8 @@ func (d *CopyRightData) CalSig(pri *rsa.PrivateKey) error {
 	}
 
 	sha1 := crypto.SHA1.New()
-	sig, err := rsa.SignPKCS1v15(buf, pri, crypto.SHA1, sha1.Sum(buf.Bytes()))
+	sha1.Write(buf.Bytes())
+	sig, err := rsa.SignPKCS1v15(buf, pri, crypto.SHA1, sha1.Sum(nil))
 	if err != nil {
 		return err
 	}
@@ -57,7 +58,7 @@ func (d *CopyRightData) CalSig(pri *rsa.PrivateKey) error {
 	return nil
 }
 
-func Register(copyright *Copyright, pri PrivateKey) error {
+func Register(copyright *Copyright, pri PrivateKey) (*CopyRightData,error) {
 	data := CopyRightData{
 		Copyright: copyright,
 		Signature: "",
@@ -65,15 +66,15 @@ func Register(copyright *Copyright, pri PrivateKey) error {
 	}
 	priKey, err := DecodePrivateKey(pri)
 	if err != nil {
-		return err
+		return nil,err
 	}
 	err = data.CalSig(priKey)
 	if err != nil {
-		return err
+		return nil,err
 	}
 	jsonD, err := json.Marshal(data)
 	if err != nil {
-		return err
+		return nil,err
 	}
 	//Send to ChainCode
 	req, err := client.Execute(channel.Request{
@@ -81,16 +82,13 @@ func Register(copyright *Copyright, pri PrivateKey) error {
 		Fcn:         "register",
 		Args:        [][]byte{[]byte(data.Hash), []byte(data.Name), []byte(data.Author), []byte(data.Press), jsonD},
 	})
-	if err != nil {
-		return err
-	}
-	log.Println(req)
-	return nil
+	println(req.Payload)
+	return &data,err
 }
 
 func GetRightByHash(hash string) (*CopyRightData, error) {
 	req, err := client.Query(channel.Request{
-		ChaincodeID: channelID,
+		ChaincodeID: chainCodeID,
 		Fcn:         "query",
 		Args:        [][]byte{[]byte(hash)},
 	})
@@ -107,7 +105,7 @@ func GetRightByHash(hash string) (*CopyRightData, error) {
 
 func GetRightByInfo(name string, author string, press string) (*CopyRightData, error) {
 	req, err := client.Query(channel.Request{
-		ChaincodeID: channelID,
+		ChaincodeID: chainCodeID,
 		Fcn:         "queryHash",
 		Args:        [][]byte{[]byte(name), []byte(author), []byte(press)},
 	})

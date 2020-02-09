@@ -15,10 +15,11 @@ func main() {
 	println("GenerateKeys")
 	pri, pub, err := client.GenerateKeys()
 	check(err)
+	println(*pri,*pub)
 
 	println("Register")
-	const TEST_HASH = "123456789123456789123456798"
-	err = client.Register(&client.Copyright{
+	const TEST_HASH = "12345678912345678912345679"
+	data,err := client.Register(&client.Copyright{
 		Name:      "TEST",
 		Author:    "TEST_USER",
 		Press:     "TEST_PRESS",
@@ -26,9 +27,10 @@ func main() {
 		PublicKey: *pub,
 	}, *pri)
 	check(err)
+	println(data)
 
 	println("GetRightByHash")
-	data, err := client.GetRightByHash(TEST_HASH)
+	data, err = client.GetRightByHash(TEST_HASH)
 	check(err)
 	println(data)
 

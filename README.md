@@ -37,5 +37,6 @@ sh manage.sh down
  sh manage.sh up #启动网络
  go mod verify #安装golang项目依赖
  #配置 ./server/conf/app.conf 中数据库信息(默认为root:123456@127.0.0.1:3306/copyright)
- go run server #启动服务端(前端为8080端口)
+ cd server
+ go run . #启动服务端(前端为8080端口)
 ```

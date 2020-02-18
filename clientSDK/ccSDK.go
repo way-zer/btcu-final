@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	configFile  = "./clientSDK/sdkConfig.yaml"
+	configFile  = "../clientSDK/sdkConfig.yaml"
 	channelID   = "tlchannel"
 	chainCodeID = "mycc"
 	orgName     = "Org1"

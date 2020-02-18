@@ -33,9 +33,9 @@ func InitMysql() {
 	port := beego.AppConfig.String("port")
 	dbname := beego.AppConfig.String("dbname")
 
-	//dbConn := "root:yu271400@tcp(127.0.0.1:3306)/myblog?charset=utf8"
+	//dbConn := "root:yu271400@tcp(127.0.0.1:3306)/copyright?charset=utf8"
 	dbConn := user + ":" + pwd + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8"
-	//dbConn = "root:wxm19990516@tcp(127.0.0.1:3306)/myblog?charset=utf8"
+	//dbConn = "root:wxm19990516@tcp(127.0.0.1:3306)/copyright?charset=utf8"
 	fmt.Println("dbConn:", dbConn)
 	//driverName = "mysql"
 
@@ -77,7 +77,35 @@ func CreateTableWithUser() {
 		);`
 	ModifyDB(sql)
 }
-
+//创建版权表
+func CreateTableWithCopyright() {
+	sql := `create table if not exists copyright(
+			id int(4) primary key auto_increment not null,
+			name varchar(30),
+			author varchar(20),
+			press varchar(30),
+			hash varchar(255),
+			publicKey varchar(1024),
+			signature varchar(255),
+			timestamp int(10),
+			copyrightNum int(20)
+			);`
+	ModifyDB(sql)
+}
+//创建文件表
+func CreateTableWithDocument() {
+	sql := `create table if not exists document(
+			id int(4) auto_increment not null,
+			name varchar(30),
+			path varchar(50),
+			hash varchar(255),
+			owner varchar(20),
+			signature varchar(255),
+			timestamp int(10),
+			primary key (id,hash)
+			);`
+	ModifyDB(sql)
+}
 //查询
 func QueryRowDB(sql string) *sql.Row {
 	return db.QueryRow(sql)
@@ -97,35 +125,7 @@ func SwitchTimeStampToData(timestamp int64) string {
 	return strconv.FormatInt(timestamp, 10)
 }
 
-func CreateTableWithCopyright() {
-	sql := `create table if not exists copyright(
-			id int(4) primary key auto_increment not null,
-			name varchar(30),
-			author varchar(20),
-			press varchar(30),
-			hash varchar(255),
-			publicKey varchar(255),
-			signature varchar(255),
-			timestamp int(10),
-			copyrightNum int(20)
-			);`
-	ModifyDB(sql)
-}
-
-func CreateTableWithDocument() {
-	sql := `create table if not exists document(
-			id int(4) auto_increment not null,
-			name varchar(30),
-			path varchar(50),
-			hash varchar(255),
-			owner varchar(20),
-			signature varchar(255),
-			timestamp int(10),
-			primary key (id,hash)
-			);`
-	ModifyDB(sql)
-}
-
+// 获取hash
 func GetHash(path string) (hash string) {
 	file, err := os.Open(path)
 	defer file.Close()

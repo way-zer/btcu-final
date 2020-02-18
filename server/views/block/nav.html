@@ -1,22 +1,16 @@
 <div id="nav">
     <div id="nav-write-article">
         <ul>
-        {{/*如果已经登录，才会显示"写博客"*/}}
+        {{/*如果已经登录，才会显示"版权登记"*/}}
         {{if .IsLogin}}
-            <li><a href="/article/add">写博客</a></li>
+            <li><a href="/copyright/add">版权登记</a></li>
         {{end}}
         </ul>
     </div>
 
-
     <div id="nav-menu">
         <ul>
             <li><a href="/copyright/home">首页</a></li>
-{{/*            <li><a href="/tags">标签</a></li>*/}}
-{{/*            <li><a href="/album">相册</a></li>*/}}
-{{/*            <li><a href="/aboutme">关于我</a></li>*/}}
-{{/*            <li>版权链--基于Fabric的版权登记系统</li>*/}}
-            <li><a href="/copyright/add">版权登记</a></li>
             <li><a href="/copyright/query">版权查询</a></li>
             <li><a href="/copyright/check">文件校验</a></li>
             <li><a href="/copyright/transaction">交易查询</a></li>

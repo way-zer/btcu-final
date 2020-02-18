@@ -11,9 +11,6 @@ type CopyrightShowController struct {
 
 func (this *CopyrightShowController) Get() {
 	fmt.Println("IsLogin", this.Islogin, this.Loginuser)
-
-	//tag := this.GetString("tag")
-	//fmt.Println("tag", tag)
 	page, _ := this.GetInt("page")
 	var copyrightList []models.Copyright
 

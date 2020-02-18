@@ -81,26 +81,6 @@ body{
     color: #888;
 }
 
-/*写入文章-------------------------------------------------------------------------------------------------------*/
-#write-art-form{
-}
-
-#write-art-form>input,#write-art-form>textarea{
-    width: 100%;
-    padding: 10px;
-}
-
-#write-art-form>textarea{
-    display: inline-block;
-}
-
-#content{
-    height: 400px;
-}
-
-#write-art-form>div{
-    margin: 10px 0px;
-}
 
 /*写入版权-------------------------------------------------------------------------------------------------------*/
 #add-copyright-form{
@@ -136,42 +116,6 @@ body{
 
 #show-copyright-form>div{
     margin: 10px 0px;
-}
-
-/*标签列表------------------------------------------------------------------------------------------------------*/
-
-#tags-list>div{
-    margin: 10px 0px;
-}
-#tags-list a{
-    font-size: 20px;
-}
-
-/*相册------------------------------------------------------------------------------------------------------*/
-
-#album-box{
-    margin: 0px auto;
-    width: 844px;
-    height: 1000px;
-    font-size: 0px;
-}
-.album-item{
-    border: 1px solid #72BCB5;
-    display: inline-block;
-    width: 400px;
-    height: 450px;
-    margin: 10px 10px;
-    /*background-repeat: no-repeat;*/
-    background-size: cover;
-}
-
-/*关于我--------------*/
-#aboutme{
-    margin: 60px auto;
-    width: 900px;
-    height: 640px;
-    font-size: 0px;
-    /*position: relative;*/
 }
 
 

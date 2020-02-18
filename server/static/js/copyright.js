@@ -4,36 +4,29 @@ $(document).ready(function () {
         rules: {
             username: {
                 required: true,
-                rangelength: [5, 10]
             },
             password: {
-                required: true,
-                rangelength: [5, 10]
+                required: true
             },
             repassword: {
                 required: true,
-                rangelength: [5, 10],
                 equalTo: "#register-password"
             }
         },
         messages: {
             username: {
-                required: "请输入用户名",
-                rangelength: "用户名必须是5-10位"
+                required: "请输入用户名"
             },
             password: {
-                required: "请输入密码",
-                rangelength: "密码必须是5-10位"
+                required: "请输入密码"
             },
             repassword: {
                 required: "请确认密码",
-                rangelength: "密码必须是5-10位",
                 equalTo: "两次输入的密码必须相等"
             }
         },
         submitHandler: function (form) {
             var urlStr = "/register";
-            // alert("urlStr:"+urlStr)
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
@@ -58,27 +51,22 @@ $(document).ready(function () {
     $("#login-form").validate({
         rules: {
             username: {
-                required: true,
-                rangelength: [5, 10]
+                required: true
             },
             password: {
-                required: true,
-                rangelength: [5, 10]
+                required: true
             }
         },
         messages: {
             username: {
-                required: "请输入用户名",
-                rangelength: "用户名必须是5-10位"
+                required: "请输入用户名"
             },
             password: {
-                required: "请输入密码",
-                rangelength: "密码必须是5-10位"
+                required: "请输入密码"
             }
         },
         submitHandler: function (form) {
             var urlStr = "/login"
-            alert("urlStr:" + urlStr)
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
@@ -99,7 +87,7 @@ $(document).ready(function () {
         }
     });
 
-    // 修改和添加版权信息的表单
+    // 添加版权信息的表单
     $("add-copyright-form").validate({
         rules: {
             name: "required",
@@ -133,38 +121,6 @@ $(document).ready(function () {
                     setTimeout(function () {
                         window.location.href = "/"
                     }, 1000)
-                },
-                error: function (data, status) {
-                    alert("err:" + data.message + ":" + status)
-                }
-            });
-        }
-    });
-
-    // 修改和添加版权信息的表单
-    $("show-copyright-form").validate({
-        rules: {
-            hash: "required",
-            name: "required",
-            author: "required",
-            press: "required",
-        },
-        messages: {
-            hash: "请输入作品hash",
-            name: "请输入作品名",
-            author: "请输入作者名",
-            press: "请输入出版社名",
-        },
-        submitHandler: function (form) {
-            $(form).ajaxSubmit({
-                url: urlStr,
-                type: "post",
-                dataType: "json",
-                success: function (data, status) {
-                    alert(":data:" + data.message);
-                    // setTimeout(function () {
-                    //     window.location.href = "/"
-                    // }, 1000)
                 },
                 error: function (data, status) {
                     alert("err:" + data.message + ":" + status)

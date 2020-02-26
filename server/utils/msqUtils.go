@@ -86,7 +86,7 @@ func CreateTableWithCopyright() {
 			press varchar(30),
 			hash varchar(255),
 			publicKey varchar(1024),
-			signature varchar(255),
+			signature varchar(1024),
 			timestamp int(10),
 			copyrightNum int(20)
 			);`
@@ -97,10 +97,10 @@ func CreateTableWithDocument() {
 	sql := `create table if not exists document(
 			id int(4) auto_increment not null,
 			name varchar(30),
-			path varchar(50),
+			path varchar(255),
 			hash varchar(255),
 			owner varchar(20),
-			signature varchar(255),
+			signature varchar(1024),
 			timestamp int(10),
 			primary key (id,hash)
 			);`
